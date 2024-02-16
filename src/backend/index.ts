@@ -1,26 +1,42 @@
-import { Server } from 'azle';
-import express, { Request } from 'express';
+import {
+  query,
+  update,
+  text,
+  Record,
+  Principal,
+  nat,
+  Vec,
+  Tuple,
+  bool,
+  StableBTreeMap,
+} from "azle";
+const EventId = text;
 
-let db = {
-    hello: ''
-};
-
-export default Server(() => {
-    const app = express();
-
-    app.use(express.json());
-
-    app.get('/db', (req, res) => {
-        res.json(db);
-    });
-
-    app.post('/db/update', (req: Request<any, any, typeof db>, res) => {
-        db = req.body;
-
-        res.json(db);
-    });
-
-    app.use(express.static('/dist'));
-
-    return app.listen();
+const UserIdentity = Principal;
+const SeatInfo = Record({
+  seatNo: nat,
+  uniqueCode: text,
 });
+
+const EventInfo = Record({
+  name: text,
+  description: text,
+  startTime: text,
+  endTime: text,
+});
+
+const QrData = Record({
+  generatedQr: Vec(text),
+  totalQrGenerated: text,
+});
+const EventData = Record({
+  claimedSeats: Vec(UserIdentity),
+  qrData: QrData,
+});
+const EventMetaData = Record({
+  eventInfo: EventInfo,
+  eventData: EventData,
+  changeStatus: bool,
+});
+
+let EventMap = StableBTreeMap< typeof EventId,typeof EventMetaData>(0);
