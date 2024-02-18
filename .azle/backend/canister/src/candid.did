@@ -1,6 +1,0 @@
-service: () -> {
-    createEvent: (principal, record {startTime:text; endTime:text; name:text; description:text}) -> (variant {Ok:record {startTime:text; endTime:text; name:text; description:text}; Err:variant {InvalidPayload:text; NotFound:text; AlreadyExists:text}});
-    generateQrCode: (text) -> (variant {Ok:text; Err:variant {InvalidPayload:text; NotFound:text; AlreadyExists:text}});
-    getEventIds: (principal) -> (variant {Ok:vec text; Err:variant {InvalidPayload:text; NotFound:text; AlreadyExists:text}}) query;
-    getIdentity: () -> (text) query;
-}
