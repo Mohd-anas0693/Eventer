@@ -119,11 +119,24 @@ export default Canister({
     if (eventMetaData.Some === undefined) {
       return Err({ NotFound: "Event not found" });
     }
-    let hexCode = hexGenerate();
-    eventMetaData.Some.eventData.qrData.generatedQr.push(hexCode);
+    const hexCode = hexGenerate();
+    const qrData = eventMetaData.Some.eventData.qrData;
+    qrData.generatedQr.push(hexCode);
+    qrData.totalQrGenerated = qrData.generatedQr.length.toString();
     console.log(eventMetaData);
     eventDataMap.insert(eventId, eventMetaData.Some);
     return Ok(hexCode);
   }),
-  
+
+  getEventData: query(
+    [EventId],
+    Result(EventMetaData, ErrorMessage),
+    (eventId) => {
+      const eventMetaData = eventDataMap.get(eventId);
+      if (eventMetaData.Some === undefined) {
+        return Err({ NotFound: "Event not found" });
+      }
+      return Ok(eventMetaData.Some);
+    }
+  ),
 });

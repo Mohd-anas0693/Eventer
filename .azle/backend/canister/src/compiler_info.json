@@ -1,1 +1,1 @@
-{"canister_methods":{"queries":[{"name":"getEventIds","composite":false},{"name":"getIdentity","composite":false}],"updates":[{"name":"createEvent"},{"name":"generateQrCode"}],"callbacks":{}},"env_vars":[]}
+{"canister_methods":{"queries":[{"name":"getEventIds","composite":false},{"name":"getEventData","composite":false}],"updates":[{"name":"createEvent"},{"name":"generateQrCode"}],"callbacks":{}},"env_vars":[]}

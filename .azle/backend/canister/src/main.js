@@ -25417,9 +25417,17 @@ var backend_default = Canister({
     eventDataMap.insert(eventId, eventMetaData.Some);
     return Ok(hexCode);
   }),
-  getIdentity: query([], text, () => {
-    return Principal.toString();
-  })
+  getEventData: query(
+    [EventId],
+    Result(EventMetaData, ErrorMessage),
+    (eventId) => {
+      const eventMetaData = eventDataMap.get(eventId);
+      if (eventMetaData.Some === void 0) {
+        return Err({ NotFound: "Event not found" });
+      }
+      return Ok(eventMetaData.Some);
+    }
+  )
 });
 
 // <stdin>

@@ -36,6 +36,38 @@ export interface _SERVICE {
           { 'AlreadyExists' : string }
       }
   >,
+  'getEventData' : ActorMethod<
+    [string],
+    {
+        'Ok' : {
+          'changeStatus' : boolean,
+          'eventData' : {
+            'claimedSeats' : Array<
+              {
+                'userIdentity' : Principal,
+                'seatNo' : bigint,
+                'uniqueCode' : string,
+              }
+            >,
+            'qrData' : {
+              'generatedQr' : Array<string>,
+              'totalQrGenerated' : string,
+            },
+          },
+          'eventInfo' : {
+            'startTime' : string,
+            'endTime' : string,
+            'name' : string,
+            'description' : string,
+          },
+        }
+      } |
+      {
+        'Err' : { 'InvalidPayload' : string } |
+          { 'NotFound' : string } |
+          { 'AlreadyExists' : string }
+      }
+  >,
   'getEventIds' : ActorMethod<
     [Principal],
     { 'Ok' : Array<string> } |
@@ -45,7 +77,6 @@ export interface _SERVICE {
           { 'AlreadyExists' : string }
       }
   >,
-  'getIdentity' : ActorMethod<[], string>,
 }
 export declare const idlFactory: IDL.InterfaceFactory;
 export declare const init: ({ IDL }: { IDL: IDL }) => IDL.Type[];
