@@ -1,18 +1,22 @@
 {
   "canisters": {
-    "backend": {
-      "build": "npx azle Eventer_backend",
-      "candid": "src/backend/Eventer_backend.did",
+    "eventer_backend": {
+      "build": "npx azle eventer_backend",
+      "candid": "src/eventer_backend/eventer_backend.did",
       "gzip": true,
-      "main": "src/backend/src/index.ts",
+      "main": "src/eventer_backend/src/index.ts",
       "type": "custom",
-      "wasm": ".azle/backend/backend.wasm"
+      "wasm": ".azle/eventer_backend/eventer_backend.wasm"
     },
-    "frontend": {
-      "dependencies": ["backend"],
-      "source": ["src/frontend/dist"],
+    "eventer_frontend": {
+      "dependencies": [
+        "eventer_backend"
+      ],
+      "source": [
+        "src/eventer_frontend/dist"
+      ],
       "type": "assets",
-      "workspace": "frontend"
+      "workspace": "eventer_frontend"
     }
   },
   "defaults": {
