@@ -7,16 +7,6 @@
       "main": "src/eventer_backend/src/index.ts",
       "type": "custom",
       "wasm": ".azle/eventer_backend/eventer_backend.wasm"
-    },
-    "eventer_frontend": {
-      "dependencies": [
-        "eventer_backend"
-      ],
-      "source": [
-        "src/eventer_frontend/dist"
-      ],
-      "type": "assets",
-      "workspace": "eventer_frontend"
     }
   },
   "defaults": {
