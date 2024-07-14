@@ -11,15 +11,13 @@
 .dfx/
 
 # generated files
-**/declarations/
-
-# rust
-target/
+src/declarations/
 
 # frontend code
 node_modules/
 dist/
-.svelte-kit/
 
 # environment variables
 .env
+canister_ids.json
+.mops

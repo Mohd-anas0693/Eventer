@@ -1,12 +1,25 @@
 {
   "canisters": {
-    "eventer_backend": {
-      "build": "npx azle eventer_backend",
-      "candid": "src/eventer_backend/eventer_backend.did",
-      "gzip": true,
-      "main": "src/eventer_backend/src/index.ts",
-      "type": "custom",
-      "wasm": ".azle/eventer_backend/eventer_backend.wasm"
+    "attendance_proof_system_backend": {
+      "main": "src/attendance_proof_system_backend/main.mo",
+      "type": "motoko"
+    },
+    "internet_identity": {
+      "type": "pull",
+      "id": "rdmx6-jaaaa-aaaaa-aaadq-cai"
+    },
+    "attendance_proof_system_frontend": {
+      "dependencies": [
+        "attendance_proof_system_backend"
+      ],
+      "frontend": {
+        "entrypoint": "src/attendance_proof_system_frontend/src/index.html"
+      },
+      "source": [
+        "src/attendance_proof_system_frontend/assets",
+        "dist/attendance_proof_system_frontend/"
+      ],
+      "type": "assets"
     }
   },
   "defaults": {
