@@ -9,9 +9,11 @@ import {
   Tuple,
   bool,
   StableBTreeMap,
+  Canister,
+  Result,
+  Variant,
 } from "azle";
 const EventId = text;
-
 const UserIdentity = Principal;
 const SeatInfo = Record({
   seatNo: nat,
@@ -24,7 +26,6 @@ const EventInfo = Record({
   startTime: text,
   endTime: text,
 });
-
 const QrData = Record({
   generatedQr: Vec(text),
   totalQrGenerated: text,
@@ -38,5 +39,21 @@ const EventMetaData = Record({
   eventData: EventData,
   changeStatus: bool,
 });
+const ErrorMessage = Variant({
+    NotFound: text,
+    AlreadyExists: text,
+    InvalidPayload: text,
+});
 
-let EventMap = StableBTreeMap< typeof EventId,typeof EventMetaData>(0);
+type EventId = typeof EventId.tsType;
+type EventInfo = typeof EventInfo.tsType;
+type QrData = typeof QrData.tsType;
+type EventData = typeof EventData.tsType;
+type EventMetaData = typeof EventMetaData.tsType;
+
+let EventMap = StableBTreeMap<EventId, EventMetaData>(0);
+
+export default Canister({
+  createEvent: update([EventInfo],Result(EventInfo,ErrorMessage),(event) =>{
+  }),
+});
