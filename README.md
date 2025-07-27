@@ -83,6 +83,13 @@ To get started with the project, follow these steps:
     - Scan the QR code and login with Internet Identity.
     - Claim your seat by clicking the "Claim Seat" button.
 
+## Deployed link 
+Use it Here:-
+ - https://7cslh-xyaaa-aaaan-qmqkq-cai.icp0.io/
+ 
+Backend Canister Link 
+ - https://a4gq6-oaaaa-aaaab-qaa4q-cai.raw.icp0.io/?id=7ftnt-2aaaa-aaaan-qmqka-cai
+
 ## Contributing
 
 Contributions are welcome! Feel free to open an issue or submit a pull request.
