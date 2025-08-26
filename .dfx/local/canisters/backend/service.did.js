@@ -41,6 +41,41 @@ export const idlFactory = ({ IDL }) => {
         ],
         [],
       ),
+    'getEventData' : IDL.Func(
+        [IDL.Text],
+        [
+          IDL.Variant({
+            'Ok' : IDL.Record({
+              'changeStatus' : IDL.Bool,
+              'eventData' : IDL.Record({
+                'claimedSeats' : IDL.Vec(
+                  IDL.Record({
+                    'userIdentity' : IDL.Principal,
+                    'seatNo' : IDL.Nat,
+                    'uniqueCode' : IDL.Text,
+                  })
+                ),
+                'qrData' : IDL.Record({
+                  'generatedQr' : IDL.Vec(IDL.Text),
+                  'totalQrGenerated' : IDL.Text,
+                }),
+              }),
+              'eventInfo' : IDL.Record({
+                'startTime' : IDL.Text,
+                'endTime' : IDL.Text,
+                'name' : IDL.Text,
+                'description' : IDL.Text,
+              }),
+            }),
+            'Err' : IDL.Variant({
+              'InvalidPayload' : IDL.Text,
+              'NotFound' : IDL.Text,
+              'AlreadyExists' : IDL.Text,
+            }),
+          }),
+        ],
+        ['query'],
+      ),
     'getEventIds' : IDL.Func(
         [IDL.Principal],
         [
@@ -55,7 +90,6 @@ export const idlFactory = ({ IDL }) => {
         ],
         ['query'],
       ),
-    'getIdentity' : IDL.Func([], [IDL.Text], ['query']),
   });
 };
 export const init = ({ IDL }) => { return []; };
