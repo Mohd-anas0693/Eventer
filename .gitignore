@@ -9,7 +9,7 @@
 
 # dfx temporary files
 .dfx/
-
+run.sh
 # generated files
 src/declarations/
 
